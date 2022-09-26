@@ -1,30 +1,21 @@
-﻿// Задайте двумерный массив размера m на n, каждый элемент в массиве находится по формуле:
-// Aₙₙ = m+n. Выведите полученный массив на экран.
-// m = 3, n = 4.
-// 0 1 2 3
-// 1 2 3 4
-// 2 3 4 5
-Console.Clear();
-Console.WriteLine("Введите колличество строк: ");
-int rows = int.Parse(Console.ReadLine());
-Console.WriteLine("Введите колличество столбцов: ");
-int columns = int.Parse(Console.ReadLine());
-
+﻿// Задайте двумерный массив. Найдите элементы, у
+// которых оба индекса чётные, и замените эти элементы на их
+// квадраты.
 int[,] GetArray(int a, int b)
 {
-    int[,] array = new int[rows, columns];
-    //Random rndNum = new Random();
+    int[,] array = new int[a, b];
+    Random rndNum = new Random();
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            array[i, j] = i + j;
+            array[i, j] = rndNum.Next(10);
         }
     }
     return array;
 }
 
-void PrintArray(int[,] array)
+void PrintArrayOne(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
@@ -36,5 +27,24 @@ void PrintArray(int[,] array)
     }
 }
 
-int[,] arr = GetArray(5, 7);
+void PrintArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if (i % 2 == 0 && j % 2 == 0)
+            {
+                array[i, j] = array[i, j] * array[i, j];
+            }
+            Console.Write($"{array[i, j]} ");
+        }
+        Console.WriteLine();
+    }
+}
+
+
+int[,] arr = GetArray(3, 4);
+PrintArrayOne(arr);
+Console.WriteLine();
 PrintArray(arr);
